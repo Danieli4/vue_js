@@ -2,6 +2,8 @@
     <div>
         <SinglePostComponent></SinglePostComponent>
         <div> Name: {{name}}</div>
+        <button @click="sayHello">Hello</button>
+        <button @click="sayHi">Hi</button>
     </div>
 </template>
 
@@ -27,7 +29,14 @@ export default {
         }
     },
 
-
+    methods: {
+        sayHello() {
+            console.log('Privet Mir');
+        },
+        sayHi() {
+            console.log('Hi');
+        },
+    },
 
     components:{
         SinglePostComponent,
