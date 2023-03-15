@@ -1,12 +1,18 @@
 <template>
     <div>
-        2222
+        <SinglePostComponent></SinglePostComponent>
     </div>
 </template>
 
 <script>
+import SinglePostComponent from "./SinglePostComponent.vue";
 export default {
-    name: "PostComponent"
+    name: "PostComponent",
+
+    components:{
+        SinglePostComponent,
+
+    }
 }
 </script>
 
