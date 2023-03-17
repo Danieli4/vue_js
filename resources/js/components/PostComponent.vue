@@ -1,11 +1,11 @@
 <template>
     <div>
         <SinglePostComponent></SinglePostComponent>
-        <div> Name: {{name}}</div>
-        <div> Job: {{vasyaJob}}</div>
-        <div>
-            {{persons}}
-        </div>
+<!--        <div> Name: {{name}}</div>-->
+<!--        <div> Job: {{vasyaJob}}</div>-->
+<!--        <div>-->
+<!--            {{persons}}-->
+<!--        </div>-->
         <div >
             <table class="table">
                 <thead>
@@ -16,8 +16,8 @@
                     <th scope="col">Job</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr v-for="person in persons">
+                <tbody v-for="person in personAgeMoreTwenty">
+                <tr  v-if="person.age > 20">
                     <th scope="row">{{person.id}}</th>
                     <td>{{person.name}}</td>
                     <td>{{person.age}}</td>
@@ -38,6 +38,7 @@
 <script>
 import SinglePostComponent from "./SinglePostComponent.vue";
 export default {
+
     name: "PostComponent",
 
     data() {
@@ -62,8 +63,24 @@ export default {
                 {
                     id: 3,
                     name: 'Petya',
-                    age: 320,
+                    age: 18,
                     job: 'driver',
+
+                },
+
+                {
+                    id: 4,
+                    name: 'Ksu',
+                    age: 22,
+                    job: 'Traveler',
+
+                },
+
+                {
+                    id: 5,
+                    name: 'Olya',
+                    age: 28,
+                    job: 'Teacher',
 
                 },
             ]
@@ -81,7 +98,13 @@ export default {
 
     computed: {
         vasyaJob() {
-            return this.name + ' worked in bakery'
+            return this.name     + ' worked in bakery'
+        },
+
+        personAgeMoreTwenty() {
+            return this.persons.filter(function (person) {
+                return person.age > 20;
+            });
         },
     },
 

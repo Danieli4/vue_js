@@ -6,7 +6,18 @@
 
 <script>
 export default {
-    name: "SinglePostComponent"
+    name: "SinglePostComponent",
+
+    data() {
+        return {
+            persons:[
+                {
+                    id: 1,
+                    name: 'Vasya',
+                    age: 20,
+                    job: 'coach',
+
+                },]}}
 }
 </script>
 
