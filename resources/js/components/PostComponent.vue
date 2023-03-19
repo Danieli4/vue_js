@@ -1,11 +1,11 @@
 <template>
     <div>
         <SinglePostComponent></SinglePostComponent>
-<!--        <div> Name: {{name}}</div>-->
-<!--        <div> Job: {{vasyaJob}}</div>-->
-<!--        <div>-->
-<!--            {{persons}}-->
-<!--        </div>-->
+        <!--        <div> Name: {{name}}</div>-->
+        <!--        <div> Job: {{vasyaJob}}</div>-->
+        <!--        <div>-->
+        <!--            {{persons}}-->
+        <!--        </div>-->
         <div >
             <table class="table">
                 <thead>
@@ -16,8 +16,8 @@
                     <th scope="col">Job</th>
                 </tr>
                 </thead>
-                <tbody v-for="person in personAgeMoreTwenty">
-                <tr  v-if="person.age > 20">
+                <tbody v-for="person in persons">
+                <tr  v-if="person.age > 0">
                     <th scope="row">{{person.id}}</th>
                     <td>{{person.name}}</td>
                     <td>{{person.age}}</td>
@@ -25,92 +25,46 @@
                 </tr>
                 </tbody>
             </table>
-<!--            <div class="div"> {{person.name}}</div>-->
-<!--            <div class="div"> {{person.age}}</div>-->
-<!--            <div class="div"> {{person.job}}</div>-->
+            <!--            <div class="div"> {{person.name}}</div>-->
+            <!--            <div class="div"> {{person.age}}</div>-->
+            <!--            <div class="div"> {{person.job}}</div>-->
 
         </div>
-        <button @click="sayHello">Hello</button>
-        <button @click="sayHi">Hi</button>
+
     </div>
 </template>
-
 <script>
 import SinglePostComponent from "./SinglePostComponent.vue";
+
 export default {
-
     name: "PostComponent",
-
+    components: {SinglePostComponent},
     data() {
         return {
-            persons:[
-                {
-                    id: 1,
-                    name: 'Vasya',
-                    age: 20,
-                    job: 'coach',
+            persons: null,
 
-                },
 
-                {
-                    id: 2,
-                    name: 'Elena',
-                    age: 28,
-                    job: 'teacher',
-
-                },
-
-                {
-                    id: 3,
-                    name: 'Petya',
-                    age: 18,
-                    job: 'driver',
-
-                },
-
-                {
-                    id: 4,
-                    name: 'Ksu',
-                    age: 22,
-                    job: 'Traveler',
-
-                },
-
-                {
-                    id: 5,
-                    name: 'Olya',
-                    age: 28,
-                    job: 'Teacher',
-
-                },
-            ]
         }
     },
 
+    mounted() {
+        this.getPersons();
+    },
+
     methods: {
-        sayHello() {
-            console.log('Privet Mir');
-        },
-        sayHi() {
-            console.log('Hi');
-        },
-    },
-
-    computed: {
-        vasyaJob() {
-            return this.name     + ' worked in bakery'
+        getPersons() {
+            axios.get('/persons')
+                .then(res => {
+                    this.persons = res.data;
+                    console.log(res);
+                })
+                .catch()
+                .finally();
         },
 
-        personAgeMoreTwenty() {
-            return this.persons.filter(function (person) {
-                return person.age > 20;
-            });
-        },
-    },
+        //computed: {},
 
 
-    components:{
-        SinglePostComponent,
 
     }
 }
