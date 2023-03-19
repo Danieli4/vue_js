@@ -1,44 +1,16 @@
 <template>
     <div>
         <SinglePostComponent></SinglePostComponent>
-        <!--        <div> Name: {{name}}</div>-->
-        <!--        <div> Job: {{vasyaJob}}</div>-->
-        <!--        <div>-->
-        <!--            {{persons}}-->
-        <!--        </div>-->
-        <div >
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Job</th>
-                </tr>
-                </thead>
-                <tbody v-for="person in persons">
-                <tr  v-if="person.age > 0">
-                    <th scope="row">{{person.id}}</th>
-                    <td>{{person.name}}</td>
-                    <td>{{person.age}}</td>
-                    <td> {{person.job}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <!--            <div class="div"> {{person.name}}</div>-->
-            <!--            <div class="div"> {{person.age}}</div>-->
-            <!--            <div class="div"> {{person.job}}</div>-->
-
-        </div>
-
+        <CreateComponent></CreateComponent>
     </div>
 </template>
 <script>
 import SinglePostComponent from "./SinglePostComponent.vue";
+import CreateComponent from "./CreateComponent.vue";
 
 export default {
     name: "PostComponent",
-    components: {SinglePostComponent},
+    components: {CreateComponent, SinglePostComponent},
     data() {
         return {
             persons: null,
@@ -48,23 +20,10 @@ export default {
     },
 
     mounted() {
-        this.getPersons();
+
     },
 
     methods: {
-        getPersons() {
-            axios.get('/persons')
-                .then(res => {
-                    this.persons = res.data;
-                    console.log(res);
-                })
-                .catch()
-                .finally();
-        },
-
-        //computed: {},
-
-
 
     }
 }

@@ -1,0 +1,62 @@
+<template>
+    <div class="w-25">
+        <div class="mb-3">
+            <input type="text" class="form-control" v-model="name" id="name" placeholder="name">
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control" v-model="age" id="age" placeholder="age">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" v-model="job" id="age" placeholder="job">
+        </div>
+        <div class="mb-3">
+            <input  @click.prevent="addPersons" class="btn btn-primary" value="Добвить">
+        </div>
+    </div>
+</template>
+<script>
+
+
+export default {
+    name: "CreateComponent",
+    data() {
+        return {
+            name: null,
+            age: null,
+            job: null,
+        }
+    },
+
+    mounted() {
+
+    },
+
+    methods: {
+        addPersons() {
+            axios.post('/api/people', {name: this.name, age: this.age, job: this.job})
+                .then(res =>{
+                    this.name =null,
+                    this.age =null,
+                    this.job =null,
+                    console.log(res);
+                })
+
+            // axios.get('/persons')
+            //     .then(res => {
+            //         this.persons = res.data;
+            //         console.log(res);
+            //     })
+            //     .catch()
+            //     .finally();
+        },
+
+        //computed: {},
+
+
+    }
+}
+</script>
+
+<style scoped>
+
+</style>
