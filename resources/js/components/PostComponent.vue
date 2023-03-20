@@ -1,16 +1,16 @@
 <template>
     <div>
-        <SinglePostComponent></SinglePostComponent>
         <CreateComponent></CreateComponent>
+        <IndexComponent></IndexComponent>
     </div>
 </template>
 <script>
-import SinglePostComponent from "./SinglePostComponent.vue";
 import CreateComponent from "./CreateComponent.vue";
+import IndexComponent from "./IndexComponent.vue";
 
 export default {
     name: "PostComponent",
-    components: {CreateComponent, SinglePostComponent},
+    components: {IndexComponent, CreateComponent},
     data() {
         return {
             persons: null,
