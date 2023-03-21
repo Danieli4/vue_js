@@ -10,10 +10,10 @@
             <input type="text" class="form-control" v-model="job" id="age" placeholder="job">
         </div>
         <div class="mb-3">
-            <input  @click.prevent="addPersons" class="btn btn-primary" value="Добвить">
+            <input  @click.prevent="addPersons" class="btn btn-primary" value="Добавить">
         </div>
     </div>
-    <SomeComponent></SomeComponent>
+    <SomeComponent :obj="obj"></SomeComponent>
 </template>
 <script>
 
@@ -26,6 +26,13 @@ export default {
             name: null,
             age: null,
             job: null,
+            obj: {
+                color: 'yellow',
+                number: 2,
+                isPublished: true,
+
+            },
+
         }
     },
 
@@ -37,10 +44,10 @@ export default {
         addPersons() {
             axios.post('/api/people', {name: this.name, age: this.age, job: this.job})
                 .then(res =>{
-                    this.name =null,
-                    this.age =null,
-                    this.job =null,
-                    console.log(res);
+                    this.name =null
+                    this.age =null
+                    this.job =null
+                    //console.log(res);
                 })
 
             // axios.get('/persons')
