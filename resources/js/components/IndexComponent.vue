@@ -18,14 +18,16 @@
                     <td>{{ person.name }}</td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.job }}</td>
-                    <td><a href="#" @click.prevent="changeEditePersonId(person.id, person.name,  person.age, person.job)" class="btn btn-success">Edit</a></td>
+                    <td><a href="#"
+                           @click.prevent="changeEditePersonId(person.id, person.name,  person.age, person.job)"
+                           class="btn btn-success">Edit</a></td>
                     <td><a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-danger">Delete</a></td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none'">
                     <th scope="row">{{ person.id }}</th>
-                    <td><input type="text" class="form-control" v-model="name" ></td>
-                    <td><input type="number" class="form-control" v-model="age" ></td>
-                    <td><input type="text" class="form-control" v-model="job" ></td>
+                    <td><input type="text" class="form-control" v-model="name"></td>
+                    <td><input type="number" class="form-control" v-model="age"></td>
+                    <td><input type="text" class="form-control" v-model="job"></td>
                     <td><a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-success">Update</a></td>
                 </tr>
             </template>
@@ -42,7 +44,7 @@ export default {
         return {
             people: null,
             editPersonId: null,
-            name: '',
+            name: 'Karl',
             age: null,
             job: '',
 
@@ -52,6 +54,7 @@ export default {
 
     mounted() {
         this.getPeople();
+        this.$parent.$refs.index.indexLog();
 
     },
 
@@ -65,7 +68,7 @@ export default {
         updatePerson(id) {
             this.editPersonId = null;
             axios.patch(`/api/people/${id}`, {name: this.name, age: this.age, job: this.job})
-                .then(res=>{
+                .then(res => {
                     this.getPeople();
                 })
 
@@ -73,7 +76,7 @@ export default {
 
         deletePerson(id) {
             axios.delete(`/api/people/${id}`,)
-                .then(res=> {
+                .then(res => {
                     this.getPeople();
                 })
 
@@ -90,6 +93,9 @@ export default {
             return this.editPersonId === id;
 
         },
+        indexLog() {
+            //console.log('this is index component');;
+        }
 
         //computed: {},
 

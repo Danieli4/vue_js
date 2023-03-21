@@ -13,9 +13,11 @@
             <input  @click.prevent="addPersons" class="btn btn-primary" value="Добвить">
         </div>
     </div>
+    <SomeComponent></SomeComponent>
 </template>
 <script>
 
+import SomeComponent from "./SomeComponent.vue";
 
 export default {
     name: "CreateComponent",
@@ -49,10 +51,9 @@ export default {
             //     .catch()
             //     .finally();
         },
-
-        //computed: {},
-
-
+    },
+    components:{
+      SomeComponent
     }
 }
 </script>

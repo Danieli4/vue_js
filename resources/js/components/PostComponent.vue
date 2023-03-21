@@ -1,7 +1,7 @@
 <template>
     <div>
         <CreateComponent></CreateComponent>
-        <IndexComponent></IndexComponent>
+        <IndexComponent ref="index"></IndexComponent>
     </div>
 </template>
 <script>
@@ -20,10 +20,14 @@ export default {
     },
 
     mounted() {
+       // console.log(this.$refs.index.name);
 
     },
 
     methods: {
+        parentLog() {
+            console.log('this is parent component');
+        },
 
     }
 }
