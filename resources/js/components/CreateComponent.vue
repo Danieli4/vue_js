@@ -47,7 +47,7 @@ export default {
                     this.name =null
                     this.age =null
                     this.job =null
-                    //console.log(res);
+                    this.$parent.$refs.index.getPeople();
                 })
 
             // axios.get('/persons')
