@@ -1,12 +1,11 @@
 <template>
-<div>
-    This is tag
-</div>
+    <div>Index</div>
+
 </template>
 
 <script>
 export default {
-    name: "TagComponent"
+    name: "Index"
 }
 </script>
 
