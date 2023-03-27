@@ -12,6 +12,6 @@ class DeleteController extends Controller
     {
         $person->delete();
 
-        return response()->json('Product deleted!');
+        return $person;
     }
 }

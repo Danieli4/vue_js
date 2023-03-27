@@ -17,6 +17,6 @@ class UpdateController extends Controller
 
         $person ->update($data);
 
-       return $person;
+       return response([]);
     }
 }

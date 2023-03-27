@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="person">
         <table class="table">
             <thead>
             <tr>
@@ -21,7 +21,7 @@
 
             </tbody>
         </table>
-        <router-link  :to="{name:'person.edit'}">Edit</router-link>
+        <router-link  :to="{name:'person.edit', params: {id: this.person.id}}">Edit</router-link>
     </div>
 </template>
 <script>
@@ -32,7 +32,7 @@ export default {
 
     data() {
         return {
-            person: {}
+            person: null
         }
     },
     mounted() {
@@ -41,8 +41,10 @@ export default {
 
     methods: {
         getPersonShow() {
-            axios.get('/api/people/' + this.$route.params.id)
-                .then(res => this.person = res.data)
+            axios.get(`/api/people/${this.$route.params.id}`)
+                .then(res => {
+                    this.person = res.data.data
+                })
         },
     }
 }
