@@ -21,33 +21,26 @@
 
             </tbody>
         </table>
-        <router-link  :to="{name:'person.edit', params: {id: this.person.id}}">Edit</router-link>
+        <router-link :to="{name:'person.edit', params: {id: this.person.id}}">Edit</router-link>
     </div>
 </template>
 <script>
-import axios from 'axios';
+import { mapGetters, mapActions } from 'vuex'
+import store from "../../store";
 
 export default {
-    name: "Show",
-
-    data() {
-        return {
-            person: null
+    computed: {
+        person(){
+            return store.getters.person;
         }
     },
-    mounted() {
-        this.getPersonShow();
-        },
 
-    methods: {
-        getPersonShow() {
-            axios.get(`/api/people/${this.$route.params.id}`)
-                .then(res => {
-                    this.person = res.data.data
-                })
-        },
+    mounted() {
+        store.dispatch('getPerson', this.$route.params.id )
     }
 }
+
+
 </script>
 
 <style scoped>

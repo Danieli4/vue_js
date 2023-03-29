@@ -42,7 +42,6 @@ export default {
     },
     computed: {
         isDisabled() {
-            console.log(this.name);
             return this.name && this.age && this.job;
         },
     }

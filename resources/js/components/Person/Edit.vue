@@ -44,7 +44,6 @@ export default {
                     this.name = res.data.data.name;
                     this.age = res.data.data.age;
                     this.job = res.data.data.job;
-                    //console.log(res.data.name);
                 })
 
         },
@@ -58,7 +57,6 @@ export default {
     },
     computed: {
         isDisabled() {
-            console.log(this.name);
             return this.name && this.age && this.job;
         },
     }
