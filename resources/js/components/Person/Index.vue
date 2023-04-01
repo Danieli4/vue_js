@@ -1,4 +1,5 @@
 <template>
+
     <div>
         <table class="table">
             <thead>
@@ -16,14 +17,15 @@
                 <th scope="row">{{ person.id }}</th>
                 <td>
                     <router-link :to="{name: 'person.show', params: {id: person.id}}">{{ person.name }}</router-link>
-                    </td>
+                </td>
                 <td>{{ person.age }}</td>
                 <td>{{ person.job }}</td>
                 <td>
                     <router-link :to="{name:'person.edit', params: {id: person.id} }">Edit</router-link>
                 </td>
                 <td>
-                    <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger">Delete</a>
+                    <a href="#" @click.prevent="$store.dispatch('deletePerson', person.id)"
+                       class="btn btn-outline-danger">Delete</a>
                 </td>
             </tr>
 
@@ -34,36 +36,29 @@
 </template>
 
 <script>
-import axios from "axios";
+
+
+import {mapGetters} from "vuex";
+
 
 export default {
     name: "Index",
 
-    data() {
-        return {
-            people: null,
+    computed: {
+        ...mapGetters(
+            {
+                person: 'person',
+                people: 'people',
+                isDisabled: 'isDisabled',
 
-        }
+            }),
+
     },
 
     mounted() {
-        this.getPeople();
+        this.$store.dispatch('getPeople');
     },
 
-    methods: {
-        getPeople() {
-            axios.get('/api/people')
-                .then(res => {
-                    this.people = res.data.data;
-                })
-        },
-        deletePerson(id) {
-            axios.delete(`/api/people/${id}`)
-                .then(res => {
-                    this.getPeople()
-                })
-        },
-    }
 }
 </script>
 

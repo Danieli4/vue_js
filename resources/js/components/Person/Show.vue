@@ -21,7 +21,7 @@
 
             </tbody>
         </table>
-        <router-link :to="{name:'person.edit', params: {id: this.person.id}}">Edit</router-link>
+        <router-link :to="{name:'person.edit', params: {id: this.$route.params.id}}">Edit</router-link>
     </div>
 </template>
 <script>
@@ -32,11 +32,13 @@ export default {
     computed: {
         person(){
             return store.getters.person;
+
         }
     },
 
     mounted() {
-        store.dispatch('getPerson', this.$route.params.id )
+        store.dispatch('getPerson', this.$route.params.id);
+        console.log(store.getters.person);
     }
 }
 
